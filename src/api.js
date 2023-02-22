@@ -14,13 +14,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async(req,res)=>{
-  const {data} = req.body;
-  const text = await ocrSpace(`data:image/png;base64,${data}`, { apiKey: apikey, language: 'ita' });
-  const result = text.ParsedResults[0].ParsedText.replaceAll("\r\n"," ").trim()
-  res.json(result)
+  const data = req.body;
+  // const text = await ocrSpace(`data:image/png;base64,${data}`, { apiKey: apikey, language: 'ita' });
+  // const result = text.ParsedResults[0].ParsedText.replaceAll("\r\n"," ").trim()
+  res.json(data)
 })
 
-app.use(`/.netlify/functions/api`, router);
+app.use(`/`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
